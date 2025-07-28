@@ -382,7 +382,7 @@ object Parse {
                 parseInfosetFormat(arguments),
                 parseInfosetOutput(arguments),
                 parseTDMLName(tdmlConfig),
-                parseTDMLDescription(tdmlConfig),
+                () => (),
                 parseTDMLPath(tdmlConfig),
                 parseRootName(arguments),
                 parseRootNamespace(arguments),
@@ -734,10 +734,10 @@ object Parse {
               tunables
             ) =>
         // From a TDML file, create a LaunchArgs.Manual from the named test, run the debugee with it
-        Resource.eval(IO(TDML.execute(name, description, tdmlPath))).flatMap {
+        Resource.eval(IO(TDML.execute(name, tdmlPath))).flatMap {
           case None =>
             Resource.raiseError[IO, Debugee, Throwable](
-              new RuntimeException(s"couldn't execute TDML with name $name, description $description, path $tdmlPath")
+              new RuntimeException(s"couldn't execute TDML with name $name and path $tdmlPath")
             )
           case Some((schemaPath, dataPath)) =>
             debugee(

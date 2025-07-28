@@ -169,7 +169,6 @@ function createDebugRunFileConfigs(
 
         if (tdmlAction === 'execute') {
           tdmlConfig.name = '${command:AskForTDMLName}'
-          tdmlConfig.description = '${command:AskForTDMLDescription}'
           tdmlConfig.path = targetResource.fsPath
         }
       }
@@ -413,33 +412,6 @@ export function activateDaffodilDebug(
         return await vscode.window
           .showQuickPick(test_case_names, {
             placeHolder: 'Test Case Name',
-          })
-          .then((value) => {
-            return value // return selected dropdown value
-          })
-      }
-    )
-  )
-
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      'extension.dfdl-debug.getTDMLDescription',
-      async (config) => {
-        // Config item gets passed
-
-        // get unique test case description options for dropdown as it may be possible for overlapping description
-        const test_case_unique_descriptions: string[] = [
-          ...new Set(
-            getTDMLTestCaseItems(config?.tdmlConfig?.path)
-              .filter((obj) => typeof obj.description == 'string')
-              .map((obj) => obj.description)
-          ),
-        ] as string[]
-
-        // dropdown
-        return await vscode.window
-          .showQuickPick(test_case_unique_descriptions, {
-            placeHolder: 'Test Case Description',
           })
           .then((value) => {
             return value // return selected dropdown value

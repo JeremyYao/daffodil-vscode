@@ -38,8 +38,8 @@
     "watch:svelte": "yarn webpack --env development=true -w -c ./src/svelte/webpack.config.js",
     "watch:svelte-tests": "mocha -r ts-node/register -w ./src/svelte/tests/**/*.test.ts",
     "watch:tdmlEditorJS": "esbuild src/tdmlEditor/webview/webview.js --outfile=dist/views/tdmlEditor/webview/webview.js --bundle --platform=node --format=cjs --watch",
-    "webpack": "webpack --mode production --config ./webpack/ext-dev.webpack.config.js",
-    "webpack:pkg": "webpack --mode production --config ./webpack/ext-package.webpack.config.js",
+    "webpack": "webpack --mode development --config ./webpack/ext-dev.webpack.config.js",
+    "webpack:pkg": "webpack --mode development --config ./webpack/ext-package.webpack.config.js",
     "webpack:svelte": "webpack -c ./src/svelte/webpack.config.js",
     "compile:tdmlEditorJS": "esbuild src/tdmlEditor/webview/webview.js --outfile=dist/views/tdmlEditor/webview/webview.js --bundle --platform=node --format=cjs",
     "prepackage": "yarn install && yarn compile && yarn webpack:pkg",
@@ -120,7 +120,6 @@
     "onCommand:extension.dfdl-debug.executeTDML",
     "onCommand:extension.dfdl-debug.copyTDML",
     "onCommand:extension.dfdl-debug.getTDMLName",
-    "onCommand:extension.dfdl-debug.getTDMLDescription",
     "onCommand:extension.dfdl-debug.getTDMLPath",
     "onCommand:extension.dfdl-debug.getValidatedTDMLPath",
     "onCommand:extension.dfdl-debug.getValidatedTDMLCopyPath",
@@ -582,11 +581,6 @@
                     "default": "${command:AskForTDMLName}",
                     "description": "TDML Case Name"
                   },
-                  "description": {
-                    "type": "string",
-                    "default": "${command:AskForTDMLDescription}",
-                    "description": "TDML Case Description"
-                  },
                   "path": {
                     "type": "string",
                     "default": "${command:AskForTDMLPath}",
@@ -830,7 +824,6 @@
           "AskForSchemaName": "extension.dfdl-debug.getSchemaName",
           "AskForDataName": "extension.dfdl-debug.getDataName",
           "AskForTDMLName": "extension.dfdl-debug.getTDMLName",
-          "AskForTDMLDescription": "extension.dfdl-debug.getTDMLDescription",
           "AskForTDMLPath": "extension.dfdl-debug.getTDMLPath",
           "AskForValidatedTDMLPath": "extension.dfdl-debug.getValidatedTDMLPath",
           "AskForValidatedTDMLCopyPath": "extension.dfdl-debug.getValidatedTDMLCopyPath"

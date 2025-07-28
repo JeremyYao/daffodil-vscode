@@ -249,7 +249,7 @@ object TDML {
   //
   // Returns a tuple containing the following (Path to DFDL Schema, Path to Data File)
   // All paths returned could be either relative or absolute - it depends on what exists in the TDML file
-  def execute(tdmlName: String, tdmlDescription: String, tdmlPath: String): Option[(Path, Path)] = {
+  def execute(tdmlName: String, tdmlPath: String): Option[(Path, Path)] = {
     val basePath = Paths.get(tdmlPath).toAbsolutePath().getParent().toString()
 
     val testCaseList = JAXBContext
@@ -262,7 +262,7 @@ object TDML {
       .toList
 
     testCaseList.collectFirst {
-      case (ptc: ParserTestCaseType) if ptc.getName() == tdmlName && ptc.getDescription() == tdmlDescription =>
+      case (ptc: ParserTestCaseType) if ptc.getName() == tdmlName =>
         ptc.getTutorialOrDocumentOrInfoset().asScala.collectFirst { case doc: DocumentType =>
           // The right part of the tuple only takes the first DocumentPart inside the Document.
           // In the case that there are more than one, any extras will be ignored.
