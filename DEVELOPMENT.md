@@ -62,6 +62,7 @@
       - [Yarn Package](#yarn-package)
       - [Automated Testing Suite](#automated-testing-suite)
         - [Testing Against a Specific Version of VS Code](#testing-against-a-specific-version-of-vs-code)
+      - [End-to-End Tests](#end-to-end-tests)
     - [Debugging the Extension](#debugging-the-extension)
       - [Changing the sampleWorkspace folder name and location](#changing-the-sampleworkspace-folder-name-and-location)
       - [Test a Local Version of Apache Daffodil Debugger](#test-a-local-version-of-apache-daffodil-debugger)
@@ -360,6 +361,14 @@ DAFFODIL_TEST_VSCODE_VERSION=1.74.3 yarn test
 ```
 
 Set `DAFFODIL_TEST_VSCODE_VERSION` to `stable` to use the latest stable release, or to `insiders` to use the latest (nightly) insiders build.
+
+#### End-to-End Tests
+
+The end-to-end (E2E) tests are separate from the test suite above, and everything for them is in the `e2e` folder. They use [vscode-extension-tester](https://github.com/redhat-developer/vscode-extension-tester) to start a real VS Code and use the extension the way a person would, including the insides of webviews like the Data Editor. They need Node 22 or newer.
+
+Run them with `yarn test:e2e`, which packages the extension first. Set `DAFFODIL_TEST_VSCODE_VERSION` to a version number or to `stable` to pick the version of VS Code. It defaults to the oldest supported version.
+
+To follow what happens in a run, start with the comment at the top of `e2e/run.ts`.
 
 ### Debugging the Extension
 

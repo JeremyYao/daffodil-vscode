@@ -1,0 +1,13 @@
+{
+  "name": "apache-daffodil-vscode-e2e",
+  "description": "End-to-end tests for the Apache Daffodil VS Code extension",
+  "private": true,
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "mocha": "11.5.0",
+    "vscode-extension-tester": "8.28.1"
+  },
+  "resolutions": {
+    "selenium-webdriver": "4.50.0"
+  }
+}

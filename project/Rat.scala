@@ -26,6 +26,12 @@ object Rat {
     file(".metal"),
     // vscode-test generated directory
     file(".vscode-test"),
+    // generated and license-free files of the e2e tests
+    file("e2e/node_modules"),
+    file("e2e/out"),
+    file("e2e/package.json"),
+    file("e2e/settings.json"),
+    file("e2e/yarn.lock"),
     // version file does not contain a license header
     file("VERSION"),
     /** Can't add license headers in JSON files. Adding a license attribute breaks things in some of these files as
