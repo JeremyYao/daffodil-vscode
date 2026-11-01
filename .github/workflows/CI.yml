@@ -208,7 +208,6 @@ jobs:
         shell: bash
     env:
       DAFFODIL_TEST_VSCODE_VERSION: ${{ matrix.vscode }} # read by e2e/run.ts
-      TEST_RESOURCES: ${{ runner.temp }}/extester # where ExTester keeps its files
     steps:
       ############################################################
       # Setup
@@ -248,10 +247,14 @@ jobs:
       - name: Run E2E tests - Linux
         run: xvfb-run -a yarn test:e2e
         if: runner.os == 'Linux'
+        env:
+          TEST_RESOURCES: ${{ runner.temp }}/extester # where ExTester keeps its files
 
       - name: Run E2E tests - Windows/Mac
         run: yarn test:e2e
         if: runner.os != 'Linux'
+        env:
+          TEST_RESOURCES: ${{ runner.temp }}/extester # where ExTester keeps its files
 
       # ExTester takes a screenshot of each failed test
       - name: Upload screenshots
